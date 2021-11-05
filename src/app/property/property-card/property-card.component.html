@@ -1,18 +1,19 @@
 <div class="card px-2 py-2">
   <div class="card-img-wrapper">
-  <img  class="card-img-top" src="assets/defaulthouse.png">
-  <ul class="list-inline text-center member-icon">
+  <img  class="card-img-top position-relative" src="assets/defaulthouse.png">
+  <ul class="list-inline text-center member-icon animate position-absolute" >
     <li class="list-inline-item">
-      <button class="btn btn-primary">E</button>
+      <button class="btn btn-primary" routerLink="/property-detail">E</button>
     </li>
     <li class="list-inline-item">
       <button class="btn btn-primary">C</button>
     </li>
   </ul>
   <div class="card-body p-2">
-      <h1>{{property.Id}}</h1>
+      <h1>{{property.id}}</h1>
       <h2>{{property.name}}</h2>
       <h3>{{property.price}}</h3>
+      <h4>{{property.type}}</h4>
       </div>
     </div>
   <div>

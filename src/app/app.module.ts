@@ -17,6 +17,10 @@ import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialCardComponent } from './property/material-card/material-card.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AddPropertyComponent } from './property/add-property/add-property.component';
+import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
+import { PropertyRentComponent } from './property/property-rent/property-rent.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +29,10 @@ import { HttpClientModule } from '@angular/common/http';
     PropertyListComponent,
     NavBarComponent,
     MyformComponent,
-    MaterialCardComponent
+    MaterialCardComponent,
+    AddPropertyComponent,
+    PropertyDetailComponent,
+    PropertyRentComponent
   ],
   imports: [
     BrowserModule,

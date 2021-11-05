@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Property } from 'src/app/shared/interfaces/property';
 import { PropertylistService } from 'src/app/shared/services/propertylist.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { PropertylistService } from 'src/app/shared/services/propertylist.servic
 })
 export class PropertyListComponent implements OnInit {
 
-  properties: any;
+  properties: Property[] = [];
 
   constructor(private propertyService:PropertylistService) { }
 

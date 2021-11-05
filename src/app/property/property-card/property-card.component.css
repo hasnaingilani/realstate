@@ -27,3 +27,9 @@
   margin-right: auto;
 
 }
+.card-img-wrapper:hover member-icon{
+  bottom:0;
+}
+.animate{
+  transition: all ease-in-out;
+}
