@@ -14,13 +14,13 @@
   transition-timing-function: ease-out;
   height: 250px;
 }
-.img-wrapper{
+.card-img-wrapper{
   overflow: hidden;
   position: relative;
 }
 .member-icon{
   position: absolute;
-  bottom: 0;
+  bottom: -30;
   left: 0;
   right:0;
   margin-left: auto;

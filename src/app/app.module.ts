@@ -15,6 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialCardComponent } from './property/material-card/material-card.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     PropertyCardComponent,
     PropertyListComponent,
     NavBarComponent,
-    MyformComponent
+    MyformComponent,
+    MaterialCardComponent
   ],
   imports: [
     BrowserModule,
