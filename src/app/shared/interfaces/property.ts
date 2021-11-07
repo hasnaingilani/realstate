@@ -1,6 +1,6 @@
 export interface Property {
-  id: number;
+  Id: string;
   name:string;
   type: string;
-  price:number;
+  price:string;
 }
