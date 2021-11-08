@@ -7,6 +7,8 @@ import { PropertyCardComponent } from './property/property-card/property-card.co
 import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
 import { PropertyListComponent } from './property/property-list/property-list.component';
 import { PropertyRentComponent } from './property/property-rent/property-rent.component';
+import { LoginComponent } from './users/login/login.component';
+import { RegisterComponent } from './users/register/register.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'propertylist',pathMatch:'full'},
@@ -16,7 +18,9 @@ const routes: Routes = [
   {path:'materialcard',component:MaterialCardComponent},
   {path:'property-detail/:id',component:PropertyDetailComponent},
   {path:'add-property',component:AddPropertyComponent},
-  {path:'property-rent',component:PropertyRentComponent}
+  {path:'property-rent',component:PropertyRentComponent},
+  {path:'register',component:RegisterComponent},
+  {path:'login',component:LoginComponent}
 ];
 
 @NgModule({

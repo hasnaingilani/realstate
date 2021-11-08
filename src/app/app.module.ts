@@ -14,12 +14,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialCardComponent } from './property/material-card/material-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddPropertyComponent } from './property/add-property/add-property.component';
 import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
 import { PropertyRentComponent } from './property/property-rent/property-rent.component';
+import { RegisterComponent } from './users/register/register.component';
+import { LoginComponent } from './users/login/login.component';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { PropertyRentComponent } from './property/property-rent/property-rent.co
     MaterialCardComponent,
     AddPropertyComponent,
     PropertyDetailComponent,
-    PropertyRentComponent
+    PropertyRentComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,8 @@ import { PropertyRentComponent } from './property/property-rent/property-rent.co
     MatRadioModule,
     MatCardModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
 
   ],
   exports:[MaterialModule],
