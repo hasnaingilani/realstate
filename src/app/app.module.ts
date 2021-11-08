@@ -50,7 +50,8 @@ import { LoginComponent } from './users/login/login.component';
     MatCardModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   exports:[MaterialModule],
