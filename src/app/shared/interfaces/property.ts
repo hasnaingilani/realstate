@@ -3,4 +3,6 @@ export interface Property {
   name:string;
   type: string;
   price:string;
+  image?:string;
+  sellrent:number;
 }

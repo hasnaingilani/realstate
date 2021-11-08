@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Property } from 'src/app/shared/interfaces/property';
 import { PropertylistService } from 'src/app/shared/services/propertylist.service';
+import { filter,map} from 'rxjs/operators'
 
 @Component({
   selector: 'app-property-list',
@@ -15,7 +16,9 @@ export class PropertyListComponent implements OnInit {
 
 
   ngOnInit() {
-    this.propertyService.getAllProperties().subscribe(data => {
+    this.propertyService.getAllProperties()
+    .pipe(map(property => property.filter(property => property.sellrent ===2)))
+    .subscribe(data => {
       this.properties = data;
       console.log(data+'   service is being provide data')
     },error => {
@@ -25,10 +28,7 @@ export class PropertyListComponent implements OnInit {
 
 
     )
-    /* this.http.get('assets/properties.json').subscribe(data => {
-      this.properties = data;
-      console.log(data)
-    }) */
+
   }
 
 }

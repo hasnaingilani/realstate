@@ -1,6 +1,7 @@
-<div class="card px-2 py-2">
+<div class="card px-2 py-2" >
   <div class="card-img-wrapper">
-     <img  class="card-img-top position-relative" src="assets/defaulthouse.png">
+     <img  *ngIf="property.image" class="card-img-top position-relative" src="assets/images/{{property.image}}.jpg">
+     <img  *ngIf="!property.image" class="card-img-top position-relative" src="assets/images/defaulthouse1.jpg">
 
     <ul class="list-inline text-center member-icon animate">
       <li class="list-inline-item">
