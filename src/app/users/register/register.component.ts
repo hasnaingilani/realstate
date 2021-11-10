@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { User } from 'src/app/shared/interfaces/user';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -8,8 +10,10 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 })
 export class RegisterComponent implements OnInit {
   registrationForm!: FormGroup;
+  user!: User;
+  flagSubmitted! : boolean;
 
-  constructor(private fb:FormBuilder) { }
+  constructor(private userService:UserService){}
 
   ngOnInit(): void {
     this.registrationForm = new FormGroup(
@@ -23,9 +27,21 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.registrationForm);
+    console.log(this.registrationForm.value);
+    this.flagSubmitted = true;
+    if(this.registrationForm.valid)
+    {
+      this.user = <User>this.registrationForm.value;
+      this.userService.saveUserDataToLocalStorage(this.user);
+      this.registrationForm.reset();
+    }
+    /* var array = JSON.parse(localStorage.getItem('Users') || '[]');
+    array.push(this.user);
+    localStorage.setItem('Users', JSON.stringify(array)); */
 
+   // localStorage.setItem('Users',JSON.stringify(this.user));
   }
+
   passwordMatchingValidator(fc: AbstractControl): ValidationErrors | null {
     return fc.get('password')?.value === fc.get('confirmPassword')?.value ? null : { notmatched: true }
   }

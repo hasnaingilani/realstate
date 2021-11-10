@@ -9,7 +9,7 @@
       <div class="form-group col-12">
         <label for="name ">Name</label>
         <input type="text" name="" id="name" class="form-control margin" formControlName="userName">
-        <span *ngIf="!userName.valid && userName.touched" class="error-block">
+        <span *ngIf="!userName.valid && (userName.touched || flagSubmitted)" class="error-block">
           Please enter the Name
          </span>
       </div>
