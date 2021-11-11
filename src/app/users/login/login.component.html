@@ -1,1 +1,25 @@
-<p>login works!</p>
+<div class="row">
+  <div class="col-6 m-auto">
+    <div class="card m-auto">
+    <div class="card-header">
+      Login User
+    </div>
+    <div class="card-body">
+      <form #loginForm='ngForm' (ngSubmit)="loginUser(loginForm)">
+      <div class="form-group col-12 margin">
+        <label for="name ">Email</label>
+        <input type="email"   id="email" class="form-control" ngModel required name="email">
+      </div>
+      <div class="form-group col-12 margin">
+        <label for="email">password</label>
+        <input type="password"  id="password" class="form-control" ngModel required name="password">
+      </div>
+            <div class="form-group col-12">
+        <button [disabled]="!loginForm.valid"  type="submit" class="btn btn-primary me-2">Save</button>
+        <button type="reset" class="btn btn-secondary ">Cancel</button>
+      </div>
+    </form>
+    </div>
+  </div>
+  </div>
+</div>

@@ -6,17 +6,17 @@
     </div>
     <div class="card-body">
       <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-      <div class="form-group col-12">
+      <div class="form-group col-12 margin">
         <label for="name ">Name</label>
-        <input type="text" name="" id="name" class="form-control margin" formControlName="userName">
+        <input type="text" name="" id="name" class="form-control " formControlName="userName">
         <span *ngIf="!userName.valid && (userName.touched || flagSubmitted)" class="error-block">
           Please enter the Name
          </span>
       </div>
-      <div class="form-group col-12">
+      <div class="form-group col-12 margin">
         <label for="email">Email</label>
-        <input type="email" name="" id="email" class="form-control margin" formControlName="email">
-        <span *ngIf="!email.valid && email.touched"class="error-block">
+        <input type="email" name="" id="email" class="form-control " formControlName="email">
+        <span *ngIf="!email.valid && (email.touched || flagSubmitted)"class="error-block">
           <span *ngIf="email.hasError('required')">
             Please enter email address
           </span>
@@ -26,10 +26,10 @@
 
          </span>
       </div>
-      <div class="form-group col-12">
+      <div class="form-group col-12 margin">
         <label for="password">Password</label>
-        <input type="password" name="" id="password" class="form-control margin" formControlName="password">
-        <span *ngIf="!password.valid && password.touched" class="error-block">
+        <input type="password" name="" id="password" class="form-control " formControlName="password">
+        <span *ngIf="!password.valid && (password.touched || flagSubmitted)" class="error-block">
           <span *ngIf="password.hasError('required')">
             Please enter password
           </span>
@@ -38,10 +38,10 @@
           </span>
          </span>
       </div>
-      <div class="form-group col-12">
+      <div class="form-group col-12 margin">
         <label for="confirmpassword">Confirm Password</label>
-        <input type="password" name="" id="confirmPassword" class="form-control margin" formControlName="confirmPassword">
-        <span *ngIf="!confirmPassword.valid && confirmPassword.touched" class="error-block">
+        <input type="password" name="" id="confirmPassword" class="form-control " formControlName="confirmPassword">
+        <span *ngIf="!confirmPassword.valid && (confirmPassword.touched || flagSubmitted)" class="error-block">
           <span *ngIf="confirmPassword.hasError('required')">
             Enter confirm password
           </span>
@@ -50,24 +50,22 @@
           Password Mismatch
         </span>
       </div>
-      <div class="form-group col-12">
+      <div class="form-group col-12 margin">
         <label for="mobile">Mobile No</label>
-        <input type="text" name="" id="mobile" class="form-control margin" formControlName="mobile">
-        <span *ngIf="!mobile.valid && mobile.touched"
-          class="error-block">
+        <input type="text" name="" id="mobile" class="form-control " formControlName="mobile">
+        <span *ngIf="!mobile.valid && (mobile.touched || flagSubmitted)" class="error-block">
           Enter valid contact no
          </span>
       </div>
-      <div class="form-group col-12 btn-group">
+      <div class="form-group col-12">
         <button type="submit" class="btn btn-primary me-2">Save</button>
-        <button type="reset" class="btn btn-secondary me-2">Cancel</button>
-        <button type="reset" class="btn btn-secondary">Cancel</button>
+        <button type="reset" class="btn btn-secondary ">Cancel</button>
+        <button class="btn btn-primary" [swal]="['Oops!', 'This is not implemented yet :/', 'warning']">
+          Do it!
+        </button>
       </div>
-      Form values: {{registrationForm.value| json}} <br>
-      Form Status: {{registrationForm.valid}}
     </form>
     </div>
-
   </div>
   </div>
 </div>

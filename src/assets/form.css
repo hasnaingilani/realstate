@@ -4,3 +4,10 @@
 .error-block{
   color: red;
 }
+.margin{
+  margin-bottom: 1rem;
+}
+.card-header{
+  background-color: white;
+  color: blue;
+}

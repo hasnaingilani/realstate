@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { User } from 'src/app/shared/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
+import * as alertfy from 'alertifyjs';
+import { AlertyfyService } from 'src/app/shared/services/alertyfy.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +15,7 @@ export class RegisterComponent implements OnInit {
   user!: User;
   flagSubmitted! : boolean;
 
-  constructor(private userService:UserService){}
+  constructor(private userService:UserService,private altertyfyService: AlertyfyService){}
 
   ngOnInit(): void {
     this.registrationForm = new FormGroup(
@@ -34,7 +36,15 @@ export class RegisterComponent implements OnInit {
       this.user = <User>this.registrationForm.value;
       this.userService.saveUserDataToLocalStorage(this.user);
       this.registrationForm.reset();
+      this.flagSubmitted = false;
+      this.altertyfyService.success('Congrate! User is registerd successfully');
+    //  alertfy.success('Congrate! User is registerd successfully');
+    }else{
+      this.altertyfyService.error('User failed to register unfortunitately' );
+
     }
+    //  alertfy.error('User failed to register' );
+
     /* var array = JSON.parse(localStorage.getItem('Users') || '[]');
     array.push(this.user);
     localStorage.setItem('Users', JSON.stringify(array)); */
