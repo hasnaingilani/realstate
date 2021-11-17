@@ -23,6 +23,7 @@ import { PropertyRentComponent } from './property/property-rent/property-rent.co
 import { RegisterComponent } from './users/register/register.component';
 import { LoginComponent } from './users/login/login.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { TabsModule} from 'ngx-bootstrap/tabs';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,9 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    TabsModule.forRoot()
+
 
   ],
   exports:[MaterialModule],

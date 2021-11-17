@@ -4,3 +4,16 @@
 .error-block{
   color: red;
 } */
+.photo-control
+{
+  min-height: 300px;
+  vertical-align: middle;
+  text-align: center;
+  border: 1px dashed blue;
+  margin: 5px
+}
+.btn-outline-success{
+  border-radius: 44px;
+  line-height: 1px;
+  padding: 15px;
+}
