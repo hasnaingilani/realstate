@@ -12,13 +12,26 @@
       </li>
     </ul>
     </div>
-    <div class="card-body p-2">
-
+    <!-- <div class="card-body p-2">
       <h2>{{property.name}}</h2>
       <h3>{{property.price}}</h3>
-      <h4>{{property.type}}</h4>
-    </div>
+      <h4>{{property.ptype}}</h4>
+    </div> -->
+    <div class="card-body p-1">
+      <h1 class="mb-0"> {{property.BHK}} BHK {{property.ptype}} </h1>
 
+      {{property.name}}
+      <span *ngIf="property.name">,</span>
+      {{property.city}}
+
+      <h6  class="mt-2">{{property.ftype}}
+      <span *ngIf="property.ftype !== 'Unfurnished'">Furnished</span> | Ready to Move</h6>
+
+      <hr class="mt-0 mb-2">
+
+      <h6 class="mb-0">Price: <span class>{{property.price}} USD.</span> |
+        Area:  <span>{{property.builtArea}} Sq Ft </span> </h6>
+    </div>
 <div>
 
 

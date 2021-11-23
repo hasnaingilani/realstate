@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Property } from 'src/app/shared/interfaces/property';
+import { Propertybase } from 'src/app/shared/interfaces/propertybase';
 import { PropertylistService } from 'src/app/shared/services/propertylist.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { PropertylistService } from 'src/app/shared/services/propertylist.servic
 })
 export class PropertyRentComponent implements OnInit {
   sellrent = 2;
-  properties: Property[] = [];
+  properties: Propertybase[] = [];
 
   constructor(private propertyService: PropertylistService) { }
 

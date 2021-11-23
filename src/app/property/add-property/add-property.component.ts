@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { Property } from 'src/app/shared/interfaces/property';
+import { Propertybase } from 'src/app/shared/interfaces/propertybase';
 
 @Component({
   selector: 'app-add-property',
@@ -15,10 +16,15 @@ export class AddPropertyComponent implements OnInit {
   propertyType : Array<string> = ['House','Apartment','Duplex'];
   furnishType : Array<string> = ['Fully','Semi','Unfurnished'];
   readytomove : Array<string> = ['East','West','South','North'];
-  propertyview:Property = {
+  propertyview : Propertybase = {
     Id:'',
     name:'',
-    type: '',
+    ptype: '',
+    ftype:'',
+    BHK:'',
+    builtArea:'',
+    city:'',
+    RTM:'',
     price:'',
     sellrent:1,
 

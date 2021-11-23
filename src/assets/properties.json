@@ -2,16 +2,17 @@
   {
     "Id":"1",
     "name": "DHA House",
-    "type": "House",
+    "ptype": "House",
     "price": "125000",
     "image": "defaulthouse1",
-    "sellrent":2
+    "sellrent":2,
+    "city":"Lahore"
 
 },
 {
   "Id":"2",
   "name": "DHA House",
-  "type": "House",
+  "ptype": "House",
   "price": "125000",
   "image":"defaulthouse1",
   "sellrent":2
@@ -20,7 +21,7 @@
 {
   "Id":"3",
   "name": "DHA House",
-  "type": "House",
+  "ptype": "House",
   "price": "125000",
   "image":"defaulthouse2",
   "sellrent":1
@@ -29,7 +30,7 @@
 {
   "Id":"4",
   "name": "DHA House",
-  "type": "House",
+  "ptype": "House",
   "price": "125000",
   "image":"defaulthouse3",
   "sellrent":1
@@ -38,7 +39,7 @@
 {
   "Id":"5",
   "name": "DHA House",
-  "type": "House",
+  "ptype": "House",
   "price": "125000",
   "image":"defaulthouse2",
   "sellrent":1
@@ -47,7 +48,7 @@
 {
   "Id":"6",
   "name": "DHA House",
-  "type": "House",
+  "ptype": "House",
   "price": "125000",
   "image":"defaulthouse2",
   "sellrent":1
@@ -56,7 +57,7 @@
 {
   "Id":"7",
   "name": "DHA House",
-  "type": "House",
+  "ptype": "House",
   "price": "125000",
   "image":"defaulthouse3",
   "sellrent":1
@@ -65,7 +66,7 @@
 {
   "Id":"8",
   "name": "DHA House",
-  "type": "House",
+  "ptype": "House",
   "price": "125000",
   "image":"defaulthouse2",
   "sellrent":1
@@ -74,7 +75,7 @@
 {
   "Id":"9",
   "name": "DHA House",
-  "type": "House",
+  "ptype": "House",
   "price": "125000",
   "image":"defaulthouse2",
   "sellrent":1
@@ -83,7 +84,7 @@
 {
   "Id":"10",
   "name": "DHA House",
-  "type": "House",
+  "ptype": "House",
   "price": "125000",
   "image":"defaulthouse2",
   "sellrent":1
@@ -92,7 +93,7 @@
 {
   "Id":"11",
   "name": "DHA House",
-  "type": "House",
+  "ptype": "House",
   "price": "125000",
   "image":"defaulthouse2",
   "sellrent":1
@@ -101,7 +102,7 @@
 {
   "Id":"12",
   "name": "DHA House",
-  "type": "House",
+  "ptype": "House",
   "price": "125000",
   "image":"defaulthouse2",
   "sellrent":1
@@ -110,7 +111,7 @@
 {
   "Id":"13",
   "name": "DHA House",
-  "type": "House",
+  "ptype": "House",
   "price": "125000",
   "image":"defaulthouse2",
   "sellrent":2
@@ -119,7 +120,7 @@
 {
   "Id":"14",
   "name": "DHA House",
-  "type": "House",
+  "ptype": "House",
   "price": "125000",
   "image":"defaulthouse2",
   "sellrent":2
@@ -128,7 +129,7 @@
 {
   "Id":"15",
   "name": "DHA House",
-  "type": "House",
+  "ptype": "House",
   "price": "1001010",
   "sellrent":2
 

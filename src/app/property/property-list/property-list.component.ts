@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Property } from 'src/app/shared/interfaces/property';
 import { PropertylistService } from 'src/app/shared/services/propertylist.service';
 import { filter,map} from 'rxjs/operators'
+import { Propertybase } from 'src/app/shared/interfaces/propertybase';
 
 @Component({
   selector: 'app-property-list',
@@ -10,7 +10,7 @@ import { filter,map} from 'rxjs/operators'
 })
 export class PropertyListComponent implements OnInit {
 
-  properties: Property[] = [];
+  properties: Propertybase[] = [];
   sellrent=  1;
 
   constructor(private propertyService:PropertylistService) { }
