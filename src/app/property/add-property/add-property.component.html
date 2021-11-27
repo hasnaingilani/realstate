@@ -3,89 +3,98 @@
   <div class="col-8">
     <div class="card">
       <div class="card-header">
-        <h3>List your Property</h3>
+        <h1>List your Property</h1>
     </div>
     <div class="card-body">
-      <form (ngSubmit)="onSubmit(Form)" #Form="ngForm">
+      <form (ngSubmit)="onSubmit()" [formGroup]="AddPropertyForm">
 
 
     <div>
       <tabset #staticTabs >
         <tab heading="Basic Info">
-         <div class="form-group col-12">
-          <div class="btn-group" btnRadioGroup ngModel required>
-            <label class="btn btn-outline-success my-2 me-2" btnRadio=1 role="button" name="SellRent">Sell</label>
-            <label class="btn btn-outline-success my-2" btnRadio=2 role="button" name="SellRent" >Rent</label>
+          <div class="form-group col-12">
+          <div class="btn-group" role="group" aria-label="Basic radio toggle button group" [(ngModel)]="propertyview.sellrent" [ngModelOptions]="{standalone: true}" ngDefaultControl>
+            <input type="radio" class="btn-check" name="sellrent" value="Sell" id="btnradio1" autocomplete="off" (click)="changeEvent($event)">
+            <label class="btn btn-outline-primary" for="btnradio1">Sell</label>
+          
+            <input type="radio" class="btn-check" name="sellrent" value="Rent" id="btnradio2" autocomplete="off" (click)="changeEvent($event)">
+            <label class="btn btn-outline-primary" for="btnradio2">Rent</label>
           </div>
           </div>
+        
           <div class="form-group col-12">
             <p>BHK</p>
-            <div class="btn-group" btnRadioGroup>
+            <div class="btn-group" btnRadioGroup >
               <label *ngFor="let bhk of [1,2,3,4,5]"
               class="btn btn-outline-success my-2 me-2"
-              btnRadio=1 role="button" name="SellRent">{{bhk}}</label>
+              btnRadio=1 role="button" formArrayName="BHK">{{bhk}}</label>
 
             </div>
             </div>
-            <div class="form-group">
-              <label>Property Type:</label>
-              &nbsp;
 
-              <label class="radio-inline my-2">
-                  <input class="mr-2" type="radio" name="optradio" value='Furnished' [(ngModel)]="propertyview.ftype" >Furnished
-              </label>
-
-              <label class="radio-inline">
-                  <input class="mr-2" type="radio" name="optradio" value='Semi' [(ngModel)]="propertyview.ftype" >Semi
-              </label>
-              <label class="radio-inline">
-                <input class="mr-2" type="radio" name="optradio" value='Unfurnished' [(ngModel)]="propertyview.ftype" >Unfurnished
-            </label>
-              </div>
           <div class="form-group col-12">
             <label for="name">In building/Project</label>
-            <input type="text" class="form-control me-2 error-block"  #propname="ngModel"
-              ngModel name="name"  required minlength="5"  [(ngModel)]="propertyview.name">
-            <span *ngIf="!propname.valid && propname.touched" class="error-block">
+            <input type="text" class="form-control me-2 error-block"
+            formControlName="name" [(ngModel)]="propertyview.name">
+            <!-- <span *ngIf="!propname.valid && propname.touched" class="error-block">
              <span *ngIf="propname.errors?.required"> Please enter property name</span>
              <span *ngIf="propname.errors?.minlength">Name should be 5 chars long</span>
-             </span>
+             </span> -->
           </div>
           <!-- <div class="form-group col-12 mt-2">
             <label for="type">Type</label>
             <input type="text" class="form-control" ngModel  name="type">
           </div> -->
-          <div class="form-group col-12"  >
-            <p>Property Type</p>
-            <div class="btn-group" btnRadioGroup name="proptype"
-               [(ngModel)]="propertyview.ptype">
-              <label
-                  *ngFor="let ptype of propertyType"
-                   class="btn btn-outline-success my-2 me-2"
-                   btnRadio=1 role="button" name="type" >{{ptype}}</label>
+          <div class="form-group col-12 my-2">
+           <div class="btn-group" role="group" aria-label="Basic radio toggle button group" [(ngModel)]="propertyview.ptype" [ngModelOptions]="{standalone: true}" ngDefaultControl>
+              <input type="radio" class="btn-check" name="ptype" value="House" id="House" autocomplete="off" >
+              <label class="btn btn-outline-primary" for="House">House</label>
+            
+              <input type="radio" class="btn-check" name="ptype" value="Apartment" id="Apartment" autocomplete="off" >
+              <label class="btn btn-outline-primary" for="Apartment">Apartment</label>
+
+              <input type="radio" class="btn-check" name="ptype" value="Duplex" id="Duplex" autocomplete="off" >
+              <label class="btn btn-outline-primary" for="Duplex">Duplex</label>
             </div>
           </div>
+
+          <div class="form-group col-12 my-2 ">
+            <div class="btn-group  " role="group" aria-label="Basic radio toggle button group" [(ngModel)]="propertyview.ftype" [ngModelOptions]="{standalone: true}" ngDefaultControl>
+               <input type="radio" class="btn-check me-2" formControlName="ftype" value="Furnished" id="Furnished" autocomplete="off" >
+               <label class="btn btn-outline-primary" for="Furnished">Furnished</label>
+             
+               <input type="radio" class="btn-check" formControlName="ftype" value="Semi" id="Sami" autocomplete="off" >
+               <label class="btn btn-outline-primary" for="Sami">Sami</label>
+ 
+               <input type="radio" class="btn-check" formControlName="ftype" value="Unfurnished" id="Unfurnished" autocomplete="off" >
+               <label class="btn btn-outline-primary" for="Unfurnished">Unfurnished</label>
+             </div>
+           </div>
+ 
+
+          
           <div class="form-group col-12">
             <p>Furnish Type</p>
-            <div class="btn-group" btnRadioGroup>
+            <div class="btn-group" btnRadioGroup >
               <label *ngFor="let ftype of furnishType"
               class="btn btn-outline-success my-2 me-2"
-              btnRadio=1 role="button" name="ftype">{{ftype}}</label>
+               role="button" name="ftype">{{ftype}}</label>
             </div>
           </div>
           <div class="form-group col-12 my-2">
             <label for="price">City</label>
-            <input type="text" class="form-control" ngModel name="price">
+            <input type="text" class="form-control" name="city" >
           </div>
-          <div class="form-group col-12">
-            <button [disabled]="!Form.valid" type="button" class="btn btn-primary btn-block"(click)="selectTab(1)">Next</button>
+
+          <div class="form-group col-12 mt-2">
+            <button  type="button" class="btn btn-primary btn-block"(click)="selectTab(1)">Next</button>
 
           </div>
         </tab>
         <tab heading="Pricing & Area">
           <div class="form-group col-12">
             <label>Price (in USD)</label>
-            <input type="text" class="form-control mb-2" name="price" [(ngModel)]="propertyview.price">
+            <input type="text" class="form-control mb-2" name="price" >
           </div>
           <div class="form-group col-12">
             <label>Security (in USD)</label>
@@ -204,7 +213,7 @@
   </div>
   <div class="col-4">
     <div class="card-header">
-      <h3>Property detail</h3>
+      <h1>Property Detail</h1>
       <div>
         <app-property-card [property]="propertyview"></app-property-card>
       </div>

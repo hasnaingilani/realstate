@@ -4,6 +4,7 @@ import { User } from 'src/app/shared/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 import * as alertfy from 'alertifyjs';
 import { AlertyfyService } from 'src/app/shared/services/alertyfy.service';
+import { Propertybase } from 'src/app/shared/interfaces/propertybase';
 
 @Component({
   selector: 'app-register',
@@ -14,6 +15,20 @@ export class RegisterComponent implements OnInit {
   registrationForm!: FormGroup;
   user!: User;
   flagSubmitted! : boolean;
+
+  propertyview : Propertybase = {
+    Id:'',
+    name:'',
+    ptype: '',
+    ftype:'',
+    BHK:'',
+    builtArea:'',
+    city:'',
+    RTM:'',
+    price:'',
+    sellrent:1,
+
+  }
 
   constructor(private userService:UserService,private altertyfyService: AlertyfyService){}
 
