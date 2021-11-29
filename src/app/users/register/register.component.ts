@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
     name:'',
     ptype: '',
     ftype:'',
-    BHK:'',
+    BHK:0,
     builtArea:'',
     city:'',
     RTM:'',

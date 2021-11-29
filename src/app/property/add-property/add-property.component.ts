@@ -17,15 +17,15 @@ export class AddPropertyComponent implements OnInit {
   AddPropertyForm!: FormGroup;
   isSubmitted: boolean = false;
 
-  propertyType : Array<string> = ['House','Apartment','Duplex'];
-  furnishType : Array<string> = ['Fully','Semi','Unfurnished'];
+  /* propertyType : Array<string> = ['House','Apartment','Duplex'];
+  furnishType : Array<string> = ['Fully','Semi','Unfurnished']; */
   readytomove : Array<string> = ['East','West','South','North'];
   propertyview : Propertybase = {
     Id:'',
     name:'',
     ptype: '',
     ftype:'',
-    BHK:'',
+    BHK:0,
     builtArea:'',
     city:'',
     RTM:'',
@@ -52,7 +52,7 @@ export class AddPropertyComponent implements OnInit {
       console.log(this.AddPropertyForm.value)
       return true;
     } */
-    console.log(this.AddPropertyForm.value)
+    console.log(this.AddPropertyForm)
 
   }
   selectTab(tabId: number) {
@@ -64,12 +64,14 @@ export class AddPropertyComponent implements OnInit {
   createAddPropertyForm(){
     this.AddPropertyForm = this.fb.group({
 
-      sellrent: new FormControl('' ,Validators.required),
+      sellrent: new FormControl(null ,Validators.required),
       BHK: [null, Validators.required],
       ptype: [null, Validators.required],
       ftype: [null, Validators.required],
       name: [null, Validators.required],
-      city: [null, Validators.required]
+      city: [null, Validators.required],
+      price: [null, Validators.required],
+      builtArea: [null,Validators.required]
     })
   }
 

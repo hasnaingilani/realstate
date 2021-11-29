@@ -4,7 +4,7 @@ export interface Propertybase {
     ptype: string;
     ftype: string
     price:string;
-    BHK: string;
+    BHK: number;
     builtArea: string;
     city:string;
     RTM:string;
