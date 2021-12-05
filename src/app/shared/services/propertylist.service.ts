@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { filter,map } from 'rxjs/operators';
+import { CProperty } from '../interfaces/CProperty';
 import { Property } from '../interfaces/property';
 import { Propertybase } from '../interfaces/propertybase';
 
@@ -26,6 +27,10 @@ export class PropertylistService {
 
     ) */
   ;
+  }
+
+  addNewProperty(property:CProperty){
+    localStorage.setItem('newprop',JSON.stringify(property));
   }
 
 }

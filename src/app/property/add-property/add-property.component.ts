@@ -5,6 +5,8 @@ import { TabsetComponent } from 'ngx-bootstrap/tabs';
 
 import { Propertybase } from 'src/app/shared/interfaces/propertybase';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CProperty } from 'src/app/shared/interfaces/CProperty';
+import { PropertylistService } from 'src/app/shared/services/propertylist.service';
 @Component({
   selector: 'app-add-property',
   templateUrl: './add-property.component.html',
@@ -17,6 +19,7 @@ export class AddPropertyComponent implements OnInit {
   AddPropertyForm!: FormGroup;
   isSubmitted: boolean = false;
   nextClicked!:boolean;
+  property = new CProperty();
 
   /* propertyType : Array<string> = ['House','Apartment','Duplex'];
   furnishType : Array<string> = ['Fully','Semi','Unfurnished']; */
@@ -36,7 +39,7 @@ export class AddPropertyComponent implements OnInit {
   }
 
 
-  constructor(private router: Router, private fb:FormBuilder) { }
+  constructor(private router: Router, private fb:FormBuilder, private propertyListService:PropertylistService) { }
 
   ngOnInit(): void {
     this.createAddPropertyForm();
@@ -46,16 +49,12 @@ export class AddPropertyComponent implements OnInit {
   }
   onSubmit(){
     this.nextClicked = true;
-    if(this.BasicInfo.invalid){
-      this.staticTabs!.tabs[0].active = true;
-      return;
-    }
-    if(this.PriceInfo.invalid){
-      this.staticTabs!.tabs[1].active = true;
-      return;
-    }
-    console.log(this.AddPropertyForm)
-
+    if(this.AllTabValid()){
+      this.mapProperty();
+      this.propertyListService.addNewProperty(this.property);
+      console.log(this.AddPropertyForm)
+    }else
+    console.log("Please enter the valid data");
   }
   selectTab(tabId: number) {
     if (this.staticTabs?.tabs[tabId]) {
@@ -69,6 +68,52 @@ export class AddPropertyComponent implements OnInit {
       this.staticTabs.tabs[tabId].active = true;
     }
   }
+  }
+
+  mapProperty(): void {
+    this.property.sellrent = this.SellRent.value;
+    this.property.BHK = this.BHK.value;
+    this.property.ptype = this.PType.value;
+    this.property.name = this.Name.value;
+    this.property.city = this.City.value;
+    this.property.ftype = this.FType.value;
+    this.property.price = this.Price.value;
+    this.property.security = this.Security.value;
+    this.property.maintenance = this.Maintenance.value;
+    this.property.builtArea = this.BuiltArea.value;
+    this.property.carpetArea = this.CarpetArea.value;
+    this.property.floorNo = this.FloorNo.value;
+    this.property.totalFloor = this.TotalFloor.value;
+    this.property.address = this.Address.value;
+    this.property.Address2 = this.LandMark.value;
+    this.property.RTM = this.RTM.value;
+    this.property.AOP = this.AOP.value;
+    this.property.gated = this.Gated.value;
+    this.property.mainEntrance = this.MainEntrance.value;
+    this.property.possession = this.PossessionOn.value;
+    this.property.Description = this.Description.value;
+    this.property.PostedOn = new Date().toString();
+  }
+
+
+  AllTabValid(): boolean{
+    if(this.BasicInfo.invalid){
+      this.staticTabs!.tabs[0].active = true;
+      return false;
+    }
+    if(this.PriceInfo.invalid){
+      this.staticTabs!.tabs[1].active = true;
+      return false;
+    }
+    if(this.AddressInfo.invalid){
+      this.staticTabs!.tabs[2].active = true;
+      return false;
+    }
+    if(this.OtherInfo.invalid){
+      this.staticTabs!.tabs[3].active = true;
+      return false;
+    }
+    return true;
   }
 
   createAddPropertyForm(){
@@ -99,8 +144,8 @@ export class AddPropertyComponent implements OnInit {
 
       OtherInfo: this.fb.group({
         RTM: [null, Validators.required],
-        possessionOn: [null,Validators.required],
-        AOP: [null,Validators.required],
+        possessionOn: [null],
+        AOP: [null],
         gated: [null],
         mainEntrance: [null],
         description: [null]
