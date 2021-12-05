@@ -9,6 +9,7 @@ import { Propertybase } from 'src/app/shared/interfaces/propertybase';
 export class PropertyCardComponent implements OnInit {
   @Input()
   property!: Propertybase;
+  @Input() hideIcon!:boolean;
 
   constructor() { }
 

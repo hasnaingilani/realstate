@@ -3,7 +3,7 @@
      <img  *ngIf="property.image" class="card-img-top position-relative" src="assets/images/{{property.image}}.jpg">
      <img  *ngIf="!property.image" class="card-img-top position-relative" src="assets/images/defaulthouse1.jpg">
 
-    <ul class="list-inline text-center member-icon animate">
+    <ul *ngIf="!hideIcon" class="list-inline text-center member-icon animate">
       <li class="list-inline-item">
         <button class="btn btn-primary" routerLink="/property-detail/{{property.Id}}">E</button>
       </li>
