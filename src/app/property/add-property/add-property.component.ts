@@ -7,6 +7,8 @@ import { Propertybase } from 'src/app/shared/interfaces/propertybase';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CProperty } from 'src/app/shared/interfaces/CProperty';
 import { PropertylistService } from 'src/app/shared/services/propertylist.service';
+import { AlertyfyService } from 'src/app/shared/services/alertyfy.service';
+import { ThrowStmt } from '@angular/compiler';
 @Component({
   selector: 'app-add-property',
   templateUrl: './add-property.component.html',
@@ -39,7 +41,9 @@ export class AddPropertyComponent implements OnInit {
   }
 
 
-  constructor(private router: Router, private fb:FormBuilder, private propertyListService:PropertylistService) { }
+  constructor(private router: Router, private fb:FormBuilder,
+              private propertyListService:PropertylistService,
+              private altertfyService:AlertyfyService) { }
 
   ngOnInit(): void {
     this.createAddPropertyForm();
@@ -49,12 +53,22 @@ export class AddPropertyComponent implements OnInit {
   }
   onSubmit(){
     this.nextClicked = true;
+
     if(this.AllTabValid()){
       this.mapProperty();
       this.propertyListService.addNewProperty(this.property);
       console.log(this.AddPropertyForm)
+      this.altertfyService.success('Property is successfully adding to listing page');
+      if(this.SellRent.value==='2'){
+        this.altertfyService.success('redirecting to rent listing page');
+        this.router.navigate(['/property-rent']);
+      }else {
+              this.router.navigate(['/']);
+              this.altertfyService.success('redirecting to sell listing page');
+      }
     }else
-    console.log("Please enter the valid data");
+    this.altertfyService.error("Please enter the valid data");
+
   }
   selectTab(tabId: number) {
     if (this.staticTabs?.tabs[tabId]) {
@@ -71,7 +85,8 @@ export class AddPropertyComponent implements OnInit {
   }
 
   mapProperty(): void {
-    this.property.sellrent = this.SellRent.value;
+    this.property.Id = String(this.propertyListService.addPID());
+    this.property.sellrent = +this.SellRent.value;
     this.property.BHK = this.BHK.value;
     this.property.ptype = this.PType.value;
     this.property.name = this.Name.value;

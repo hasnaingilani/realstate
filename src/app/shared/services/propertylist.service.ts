@@ -14,7 +14,7 @@ export class PropertylistService {
   constructor(private http:HttpClient) {}
 
   getAllProperties(){
-  return  this.http.get<Propertybase[]>('assets/propertyList.json')
+  return  this.http.get<CProperty[]>('assets/propertyList.json')
   /* .pipe(map(property => property.filter(property => property.sellrent ===1)))
     .subscribe(data => {
       this.properties = data;
@@ -28,9 +28,28 @@ export class PropertylistService {
     ) */
   ;
   }
-
+ newProp:CProperty[]=[];
   addNewProperty(property:CProperty){
-    localStorage.setItem('newprop',JSON.stringify(property));
+    //let newProp = [property];
+    if(localStorage.getItem('newprop')){
+     this.newProp = [property,...JSON.parse(localStorage.getItem('newprop')!)]
+    //  newProp.push(property);
+      localStorage.setItem('newprop',JSON.stringify(this.newProp));
+      console.log('adding multiple records to localstorage  ... '+this.newProp);
+    }
+else{
+      localStorage.setItem('newprop',JSON.stringify(this.newProp));
+      console.log('add new record to localstorage... '+this.newProp);
+    }
+  }
+  addPID(){
+    if(localStorage.getItem('PID')){
+      localStorage.setItem('PID',String(+localStorage.getItem('PID')!+1));
+      return localStorage.getItem('PID');
+    }else{
+      localStorage.setItem('PID','101');
+      return '101';
+    }
   }
 
 }

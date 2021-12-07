@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PropertylistService } from 'src/app/shared/services/propertylist.service';
 import { filter,map} from 'rxjs/operators'
 import { Propertybase } from 'src/app/shared/interfaces/propertybase';
+import { CProperty } from 'src/app/shared/interfaces/CProperty';
 
 @Component({
   selector: 'app-property-list',
@@ -10,8 +11,10 @@ import { Propertybase } from 'src/app/shared/interfaces/propertybase';
 })
 export class PropertyListComponent implements OnInit {
 
-  properties: Propertybase[] = [];
+  properties: CProperty[] = [];
   sellrent=  1;
+  newProperty: CProperty[]=[];
+  i:number = 1;
 
   constructor(private propertyService:PropertylistService) { }
 
@@ -19,12 +22,29 @@ export class PropertyListComponent implements OnInit {
   ngOnInit() {
     this.propertyService.getAllProperties()
     .pipe(map(property => property.filter(property => property.sellrent ===this.sellrent)))
-    .subscribe(data => {
+    .subscribe(data =>
+    {
       this.properties = data;
-      console.log(data+'    Property list module is being provide data')
+      this.newProperty = JSON.parse(localStorage.getItem('newprop') || '[]');
+      for(const i in this.newProperty)
+          if(this.newProperty[i].sellrent==1)
+          this.properties.push(this.newProperty[i])
+        console.log('new Property  '+this.newProperty);
+      /* const propertiesArray: Array<CProperty> = [];
+      const localProperties = JSON.parse(localStorage.getItem('newprop')!);
+      if (localProperties) {
+        for (const id in localProperties) {
+          if (localProperties.hasOwnProperty(id) && localProperties[id].sellrent === 1)
+            propertiesArray.push(localProperties[id]);
+         // }
+        }
+      }
+      for (const id in data) {
+          propertiesArray.push(data[id]);
+      }
+      this.properties = propertiesArray; */
     },error => {
       console.log(error);
     })
   }
-
 }
