@@ -51,5 +51,8 @@ else{
       return '101';
     }
   }
+  getPropertyDetail(id:number){
+
+  }
 
 }
