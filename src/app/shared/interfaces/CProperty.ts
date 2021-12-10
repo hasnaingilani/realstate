@@ -25,7 +25,7 @@ export class CProperty implements Propertybase {
   maintenance?: number;
   possession?: string;
   Image?: string;
-  Description?: string;
+  description?: string;
   PostedOn!: string;
   PostedBy!: number;
 }

@@ -20,31 +20,20 @@ export class PropertyListComponent implements OnInit {
 
 
   ngOnInit() {
-    this.propertyService.getAllProperties()
+   this.propertyService.getAllProperties()
     .pipe(map(property => property.filter(property => property.sellrent ===this.sellrent)))
     .subscribe(data =>
     {
       this.properties = data;
+      console.log('data at property list component '+data);
       this.newProperty = JSON.parse(localStorage.getItem('newprop') || '[]');
       for(const i in this.newProperty)
           if(this.newProperty[i].sellrent==1)
           this.properties.push(this.newProperty[i])
         console.log('new Property  '+this.newProperty);
-      /* const propertiesArray: Array<CProperty> = [];
-      const localProperties = JSON.parse(localStorage.getItem('newprop')!);
-      if (localProperties) {
-        for (const id in localProperties) {
-          if (localProperties.hasOwnProperty(id) && localProperties[id].sellrent === 1)
-            propertiesArray.push(localProperties[id]);
-         // }
-        }
-      }
-      for (const id in data) {
-          propertiesArray.push(data[id]);
-      }
-      this.properties = propertiesArray; */
+
     },error => {
       console.log(error);
     })
-  }
+ }
 }

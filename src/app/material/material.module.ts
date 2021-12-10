@@ -9,7 +9,7 @@ const materialModules = [
   MatCardModule,
   MatButtonModule,
   MatDatepickerModule,
-  MatNativeDateModule,
+  MatNativeDateModule
 
 ];
 

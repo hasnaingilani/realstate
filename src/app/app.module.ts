@@ -24,6 +24,7 @@ import { RegisterComponent } from './users/register/register.component';
 import { LoginComponent } from './users/login/login.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { TabsModule} from 'ngx-bootstrap/tabs';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { TabsModule} from 'ngx-bootstrap/tabs';
     FormsModule,
     ReactiveFormsModule,
     SweetAlert2Module.forRoot(),
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    NgxGalleryModule
 
 
   ],

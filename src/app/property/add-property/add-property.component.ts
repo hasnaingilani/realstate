@@ -106,7 +106,7 @@ export class AddPropertyComponent implements OnInit {
     this.property.gated = this.Gated.value;
     this.property.mainEntrance = this.MainEntrance.value;
     this.property.possession = this.PossessionOn.value;
-    this.property.Description = this.Description.value;
+    this.property.description = this.Description.value;
     this.property.PostedOn = new Date().toString();
   }
 
