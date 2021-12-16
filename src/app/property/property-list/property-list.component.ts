@@ -17,10 +17,12 @@ export class PropertyListComponent implements OnInit {
   i:number = 1;
 
   constructor(private propertyService:PropertylistService) { }
-
+  properties1:any=[];
 
   ngOnInit() {
-   this.propertyService.getAllProperties()
+
+    this.loadProperties();
+   /* this.propertyService.getAllProperties()
     .pipe(map(property => property.filter(property => property.sellrent ===this.sellrent)))
     .subscribe(data =>
     {
@@ -34,6 +36,12 @@ export class PropertyListComponent implements OnInit {
 
     },error => {
       console.log(error);
-    })
+    }) */
  }
+ loadProperties() {
+  /* return this.propertyService.getProperties().subscribe((data: {}) => {
+    this.properties1 = data;
+  }) */
+  return this.propertyService.getProperties(1).subscribe(data => this.properties1 = data)
+}
 }

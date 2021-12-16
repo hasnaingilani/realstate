@@ -12,14 +12,15 @@ import { PropertylistService } from 'src/app/shared/services/propertylist.servic
 })
 export class PropertyRentComponent implements OnInit {
   sellrent = 2;
-  properties: CProperty[] = [];
+  properties1: CProperty[] = [];
   newProperty : CProperty[]=[];
 
-  constructor(private propertyService: PropertylistService) { }
+  constructor(private propertyService1: PropertylistService) { }
 
 
   ngOnInit(): void {
-    this.propertyService.getAllProperties()
+    this.loadProperties();
+   /*  this.propertyService.getAllProperties()
     .pipe(map(property => property.filter(property => property.sellrent ===this.sellrent)))
     .subscribe(data => {
       this.properties = data;
@@ -35,7 +36,14 @@ export class PropertyRentComponent implements OnInit {
       console.log(this.properties+'    Property list module is being provide data')
     },error => {
       console.log(error);
-    })
+    }) */
+
+  }
+  loadProperties() {
+    /* return this.propertyService.getProperties().subscribe((data: {}) => {
+      this.properties1 = data;
+    }) */
+    return this.propertyService1.getProperties(2).subscribe(data => this.properties1 = data)
   }
 
 }

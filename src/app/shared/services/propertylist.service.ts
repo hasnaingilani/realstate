@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { filter,map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, filter,map, retry } from 'rxjs/operators';
 import { CProperty } from '../interfaces/CProperty';
 import { Property } from '../interfaces/property';
 import { Propertybase } from '../interfaces/propertybase';
@@ -13,6 +13,7 @@ import { Propertybase } from '../interfaces/propertybase';
 export class PropertylistService {
   properties: CProperty[] = [];
   newProperty: CProperty[]=[];
+  property = new CProperty();
   constructor(private http:HttpClient) {}
 
   getAllProperties(){
@@ -46,7 +47,7 @@ else{
   }
 
   getAllProperties2(sellrent: number): Observable<CProperty[]> {
-    return this.http.get<CProperty[]>('assets/propertyList.json').pipe(
+     return this.http.get<CProperty[]>('assets/propertyList.json').pipe(
       map(data => {
         data.filter(data => data.sellrent ===sellrent)
        this.properties = data;
@@ -57,63 +58,66 @@ else{
           if(this.newProperty[i].sellrent==sellrent)
           this.properties.push(this.newProperty[i])
         console.log('combined data of localstorage and file  '+this.properties);
-      /* const propertiesArray: Array<CProperty> = [];
-      const localProperties = JSON.parse(localStorage.getItem('newprop')!);
-      if (localProperties) {
-        for (const id in localProperties) {
-          if (localProperties.hasOwnProperty(id) && localProperties[id].sellrent === 1)
-            propertiesArray.push(localProperties[id]);
-         // }
-        }
-      }
-      for (const id in data) {
-          propertiesArray.push(data[id]);
-      }
-      this.properties = propertiesArray; */
+
       console.log('data received in service   '+String(this.properties));
       return this.properties;
       })
     );
 
   }
+  getProperties(sellrent?:number) {
+    this.properties = [];
+    return this.http
+      .get<CProperty[]>('assets/propertyList.json')
+      .pipe(
+         map(data => {
+          for(const i in data)
 
+          if(data[i].sellrent === sellrent)
+          this.properties.push(data[i])
+          console.log('data from service ..'+this.properties);
+        return this.properties;
+         }),
+         catchError(this.handleError)
+      );
 
-  getAllProperties3(SellRent?: number): Observable<CProperty[]> {
-    return this.http.get<CProperty[]>('assets/propertyList.json').pipe(
-      map((data) => {
-      const propertiesArray: CProperty[] = [];
-      const localProperties = JSON.parse(localStorage.getItem('newprop')!);
-
-      if (localProperties) {
-        for (const id in localProperties) {
-          if (SellRent) {
-          if (localProperties.hasOwnProperty(id) && localProperties[id].sellrent === SellRent) {
-            propertiesArray.push(localProperties[id]);
-          }
-        } else {
-          propertiesArray.push(localProperties[id]);
-        }
-        }
-      }
-
-      for (const id in data) {
-        if (SellRent) {
-          if (data.hasOwnProperty(id) && data[id].sellrent === SellRent) {
-            propertiesArray.push(data[id]);
-          }
-          } else {
-            propertiesArray.push(data[id]);
-        }
-      }
-      console.log('Property Detail in service method  '+propertiesArray);
-      return propertiesArray;
-      })
-    );
-
-    //return this.http.get<CProperty[]>('data/properties.json');
   }
-  getProperty(id: string) {
-    return this.getAllProperties3();
+  getProperty(sellrent?:number) {
+    this.properties = [];
+    return this.http
+      .get<CProperty[]>('assets/propertyList.json')
+      .pipe(
+         map(data => {
+
+          for(const i in data)
+        //  if(data[i].sellrent === sellrent)
+          this.properties.push(data[i])
+          console.log('data from service ..'+this.properties);
+        return this.properties;
+         }),
+         catchError(this.handleError)
+      );
+
   }
+  /* getProperty(id: number): Observable<CProperty[]> {
+    return this.getProperty().subscribe(data => this.properties = data[id]);
+
+  } */
+  handleError(error: { error: { message: string; }; status: any; message: any; }) {
+    let errorMessage = '';
+    if(error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
+ }
+
+
+
+
 
 }

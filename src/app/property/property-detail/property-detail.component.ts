@@ -17,9 +17,10 @@ export class PropertyDetailComponent implements OnInit {
   public property = new CProperty();
   public properties: CProperty[]=[];
   newProperty: CProperty[]=[];
-  localId!:string;
+  localId!:number;
   public galleryOptions!: NgxGalleryOptions[];
   public galleryImages!: NgxGalleryImage[];
+  propertyData:any= [];
   constructor(private route:ActivatedRoute, private router: Router, private propertylistService:PropertylistService) { }
 
   ngOnInit(): void {
@@ -28,13 +29,14 @@ export class PropertyDetailComponent implements OnInit {
     this.route.params.subscribe(
       (params) =>{
         this.propertyId = +params['id'];
-        this.localId = params['id'];
+        this.localId = +params['id'];
       })
+      this.loadProperties(this.localId);
         /////////////////////////////////////////
 
 
         /////////////////////////////////////////////
-        this.propertylistService.getAllProperties()
+     /*    this.propertylistService.getAllProperties()
     .pipe(map(property => property.filter(property => property.Id ===this.localId)))
     .subscribe(data =>
     {
@@ -52,7 +54,12 @@ export class PropertyDetailComponent implements OnInit {
 
     },error => {
       console.log(error);
-    })
+    }) */
+
+   /*  this.propertylistService.getEmployee(this.localId).subscribe((data: {}) => {
+      this.propertyData = data;
+      this.property = this.propertyData;
+    }) */
 
     /* NGX Carousel implementation */
     this.galleryOptions = [
@@ -129,5 +136,10 @@ export class PropertyDetailComponent implements OnInit {
         })
 
   } */
-
+  loadProperties(id:number) {
+    /* return this.propertyService.getProperties().subscribe((data: {}) => {
+      this.properties1 = data;
+    }) */
+    return this.propertylistService.getProperty().subscribe(data => this.property = data[id-1])
+  }
 }
