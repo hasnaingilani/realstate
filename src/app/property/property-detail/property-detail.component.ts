@@ -23,12 +23,17 @@ export class PropertyDetailComponent implements OnInit {
   public galleryOptions!: NgxGalleryOptions[];
   public galleryImages!: NgxGalleryImage[];
   propertyData:any= [];
-  constructor(private route:ActivatedRoute, private router: Router, private propertylistService:PropertylistService) { }
+  constructor(private route:ActivatedRoute, private router: Router,
+              private propertylistService:PropertylistService) {}
 
   ngOnInit(): void {
 
     this.propertyId = +this.route.snapshot.params['id'];
-    this.loadProperties(this.propertyId);
+  //  this.loadProperties(this.propertyId);
+    this.route.data.subscribe(data => {
+      this.property = data['prp'];
+    })
+
 
     this.galleryOptions = [
       {
@@ -88,7 +93,7 @@ export class PropertyDetailComponent implements OnInit {
     this.router.navigate(['property-detail',this.propertyId]);
   }
 
-  loadProperties(id:number) {
+  /* loadProperties(id:number) {
       return this.propertylistService.getPropertyDetail(id).subscribe(data => this.property = data)
-  }
+  } */
 }

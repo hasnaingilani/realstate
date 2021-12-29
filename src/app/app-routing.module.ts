@@ -17,7 +17,7 @@ const routes: Routes = [
   {path:'propertycard',component:PropertyCardComponent},
   {path:'myform',component:MyformComponent},
   {path:'materialcard',component:MaterialCardComponent},
-  {path:'property-detail/:id',component:PropertyDetailComponent},
+  {path:'property-detail/:id',component:PropertyDetailComponent,resolve:{prp:PropertydetailResolver}},
   {path:'add-property',component:AddPropertyComponent},
   {path:'property-rent',component:PropertyRentComponent},
   {path:'register',component:RegisterComponent},
