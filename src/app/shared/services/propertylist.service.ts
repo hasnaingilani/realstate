@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, filter,map, retry } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { CProperty } from '../interfaces/CProperty';
-import { Property } from '../interfaces/property';
-import { Propertybase } from '../interfaces/propertybase';
 
 
 @Injectable({
@@ -12,27 +10,50 @@ import { Propertybase } from '../interfaces/propertybase';
 })
 export class PropertylistService {
   properties: CProperty[] = [];
-  newProperty: CProperty[]=[];
   property = new CProperty();
+  newProp:CProperty[]=[];
   constructor(private http:HttpClient) {}
 
-  getAllProperties(){
-  return  this.http.get<CProperty[]>('assets/propertyList.json')
+/* get All Properties from JSON file */
+
+  getAllProperties():Observable<CProperty[]>{
+    return  this.http.get<CProperty[]>('assets/propertyList.json')
   }
- newProp:CProperty[]=[];
+
+  /* get All Properties from JSON file basic on sellrent field value */
+  getProperties(sellrent?:number) {
+    this.properties = [];
+    return this.http.get<CProperty[]>('assets/propertyList.json')
+      .pipe(
+         map(data => {
+          for(const i in data)
+            if(data[i].sellrent === sellrent)
+             this.properties.push(data[i])
+          console.log('data from service ..'+this.properties);
+        return this.properties;
+         }),
+         catchError(this.handleError)
+      );
+
+  }
+/* get detail of selected property from JSON file */
+  getPropertyDetail(id:number) {
+    return this.getAllProperties().pipe(map(data => this.property = data[id-1]))
+  }
+/* add new property to localstorage */
+
   addNewProperty(property:CProperty){
-    //let newProp = [property];
-    if(localStorage.getItem('newprop')){
+   if(localStorage.getItem('newprop')){
      this.newProp = [property,...JSON.parse(localStorage.getItem('newprop')!)]
-    //  newProp.push(property);
-      localStorage.setItem('newprop',JSON.stringify(this.newProp));
-      console.log('adding multiple records to localstorage  ... '+this.newProp);
-    }
-else{
+    localStorage.setItem('newprop',JSON.stringify(this.newProp));
+    console.log('adding multiple records to localstorage  ... '+this.newProp);
+   }
+    else{
       localStorage.setItem('newprop',JSON.stringify(this.newProp));
       console.log('add new record to localstorage... '+this.newProp);
     }
   }
+  /* get new PID from localstorage*/
   addPID(){
     if(localStorage.getItem('PID')){
       localStorage.setItem('PID',String(+localStorage.getItem('PID')!+1));
@@ -42,67 +63,9 @@ else{
       return '101';
     }
   }
-  getPropertyDetail(id:number){
 
-  }
+/* Error handling  */
 
-  getAllProperties2(sellrent: number): Observable<CProperty[]> {
-     return this.http.get<CProperty[]>('assets/propertyList.json').pipe(
-      map(data => {
-        data.filter(data => data.sellrent ===sellrent)
-       this.properties = data;
-       console.log('data from file  '+data);
-      this.newProperty = JSON.parse(localStorage.getItem('newprop') || '[]');
-      console.log('data from localstorage '+this.newProperty);
-      for(const i in this.newProperty)
-          if(this.newProperty[i].sellrent==sellrent)
-          this.properties.push(this.newProperty[i])
-        console.log('combined data of localstorage and file  '+this.properties);
-
-      console.log('data received in service   '+String(this.properties));
-      return this.properties;
-      })
-    );
-
-  }
-  getProperties(sellrent?:number) {
-    this.properties = [];
-    return this.http
-      .get<CProperty[]>('assets/propertyList.json')
-      .pipe(
-         map(data => {
-          for(const i in data)
-
-          if(data[i].sellrent === sellrent)
-          this.properties.push(data[i])
-          console.log('data from service ..'+this.properties);
-        return this.properties;
-         }),
-         catchError(this.handleError)
-      );
-
-  }
-  getProperty(sellrent?:number) {
-    this.properties = [];
-    return this.http
-      .get<CProperty[]>('assets/propertyList.json')
-      .pipe(
-         map(data => {
-
-          for(const i in data)
-        //  if(data[i].sellrent === sellrent)
-          this.properties.push(data[i])
-          console.log('data from service ..'+this.properties);
-        return this.properties;
-         }),
-         catchError(this.handleError)
-      );
-
-  }
-  /* getProperty(id: number): Observable<CProperty[]> {
-    return this.getProperty().subscribe(data => this.properties = data[id]);
-
-  } */
   handleError(error: { error: { message: string; }; status: any; message: any; }) {
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {
@@ -114,10 +77,5 @@ else{
     }
     window.alert(errorMessage);
     return throwError(errorMessage);
- }
-
-
-
-
-
+  }
 }

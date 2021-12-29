@@ -27,7 +27,7 @@ export class AddPropertyComponent implements OnInit {
   furnishType : Array<string> = ['Fully','Semi','Unfurnished']; */
   readytomove : Array<string> = ['East','West','South','North'];
   propertyview : Propertybase = {
-    Id:'',
+    Id:0,
     name:'',
     ptype: '',
     ftype:'',
@@ -85,7 +85,7 @@ export class AddPropertyComponent implements OnInit {
   }
 
   mapProperty(): void {
-    this.property.Id = String(this.propertyListService.addPID());
+    this.property.Id = Number(this.propertyListService.addPID());
     this.property.sellrent = +this.SellRent.value;
     this.property.BHK = this.BHK.value;
     this.property.ptype = this.PType.value;

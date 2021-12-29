@@ -1,6 +1,6 @@
 [
   {
-    "Id":"1",
+    "Id":1,
     "sellrent":1,
     "name":"Birla House",
     "ptype":"House",
@@ -28,7 +28,7 @@
   },
 
   {
-    "Id":"2",
+    "Id":2,
     "sellrent":2,
     "name":"Erose Flat",
     "ptype":"Aparment",
@@ -55,7 +55,7 @@
     "postedOn":"01-Jan-2019"
   },
   {
-    "Id":"3",
+    "Id":3,
     "sellrent":2,
     "name":"Birla House",
     "ptype":"House",
@@ -83,7 +83,7 @@
   },
 
   {
-    "Id":"4",
+    "Id":4,
     "sellrent":2,
     "name":"Erose Flat",
     "ptype":"Aparment",

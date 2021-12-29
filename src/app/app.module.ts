@@ -25,6 +25,7 @@ import { LoginComponent } from './users/login/login.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { TabsModule} from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { PropertydetailResolver } from './propertydetail.resolver';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,7 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
   ],
   exports:[MaterialModule],
-  providers: [],
+  providers: [PropertydetailResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

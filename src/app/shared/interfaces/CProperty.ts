@@ -1,6 +1,6 @@
 import { Propertybase } from "./propertybase";
 export class CProperty implements Propertybase {
-  Id!: string;
+  Id!: number;
   sellrent!: number;
   name!: string;
   ptype!: string;

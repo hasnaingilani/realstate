@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   flagSubmitted! : boolean;
 
   propertyview : Propertybase = {
-    Id:'',
+    Id:0,
     name:'',
     ptype: '',
     ftype:'',

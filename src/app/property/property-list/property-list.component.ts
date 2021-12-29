@@ -12,36 +12,13 @@ import { CProperty } from 'src/app/shared/interfaces/CProperty';
 export class PropertyListComponent implements OnInit {
 
   properties: CProperty[] = [];
-  sellrent=  1;
-  newProperty: CProperty[]=[];
-  i:number = 1;
-
   constructor(private propertyService:PropertylistService) { }
   properties1:any=[];
 
   ngOnInit() {
-
     this.loadProperties();
-   /* this.propertyService.getAllProperties()
-    .pipe(map(property => property.filter(property => property.sellrent ===this.sellrent)))
-    .subscribe(data =>
-    {
-      this.properties = data;
-      console.log('data at property list component '+data);
-      this.newProperty = JSON.parse(localStorage.getItem('newprop') || '[]');
-      for(const i in this.newProperty)
-          if(this.newProperty[i].sellrent==1)
-          this.properties.push(this.newProperty[i])
-        console.log('new Property  '+this.newProperty);
-
-    },error => {
-      console.log(error);
-    }) */
- }
- loadProperties() {
-  /* return this.propertyService.getProperties().subscribe((data: {}) => {
-    this.properties1 = data;
-  }) */
-  return this.propertyService.getProperties(1).subscribe(data => this.properties1 = data)
-}
+  }
+  loadProperties() {
+    return this.propertyService.getProperties(1).subscribe(data => this.properties = data)
+  }
 }

@@ -1,5 +1,5 @@
 export interface Propertybase {
-    Id: string;
+    Id: number;
     name:string;
     ptype: string;
     ftype: string

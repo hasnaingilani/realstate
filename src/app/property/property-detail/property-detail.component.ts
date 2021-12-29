@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { catchError, delay, map } from 'rxjs/operators';
 import { CProperty } from 'src/app/shared/interfaces/CProperty';
 import { PropertylistService } from 'src/app/shared/services/propertylist.service';
 import {NgxGalleryOptions} from '@kolkov/ngx-gallery';
 import {NgxGalleryImage} from '@kolkov/ngx-gallery';
 import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
+import { EMPTY } from 'rxjs';
 
 @Component({
   selector: 'app-property-detail',
@@ -14,8 +15,9 @@ import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
 })
 export class PropertyDetailComponent implements OnInit {
   propertyId!: number;
+  //public property = new CProperty();
   public property = new CProperty();
-  public properties: CProperty[]=[];
+  public properties: any;
   newProperty: CProperty[]=[];
   localId!:number;
   public galleryOptions!: NgxGalleryOptions[];
@@ -26,42 +28,8 @@ export class PropertyDetailComponent implements OnInit {
   ngOnInit(): void {
 
     this.propertyId = +this.route.snapshot.params['id'];
-    this.route.params.subscribe(
-      (params) =>{
-        this.propertyId = +params['id'];
-        this.localId = +params['id'];
-      })
-      this.loadProperties(this.localId);
-        /////////////////////////////////////////
+    this.loadProperties(this.propertyId);
 
-
-        /////////////////////////////////////////////
-     /*    this.propertylistService.getAllProperties()
-    .pipe(map(property => property.filter(property => property.Id ===this.localId)))
-    .subscribe(data =>
-    {
-      this.properties = data;
-
-
-      console.log('data at property Detail component '+data);
-      this.newProperty = JSON.parse(localStorage.getItem('newprop') || '[]');
-      for(const i in this.newProperty)
-          if(this.newProperty[i].Id==this.localId)
-          this.properties.push(this.newProperty[i])
-        console.log('new Property  '+this.newProperty);
-        this.property = this.properties[0];
-
-
-    },error => {
-      console.log(error);
-    }) */
-
-   /*  this.propertylistService.getEmployee(this.localId).subscribe((data: {}) => {
-      this.propertyData = data;
-      this.property = this.propertyData;
-    }) */
-
-    /* NGX Carousel implementation */
     this.galleryOptions = [
       {
         width: '600px',
@@ -119,27 +87,8 @@ export class PropertyDetailComponent implements OnInit {
     this.propertyId += 1;
     this.router.navigate(['property-detail',this.propertyId]);
   }
-  /* propertyDetail(id:number){
-    this.propertylistService.getAllProperties()
-        .pipe(map((property: CProperty[]) => property.filter((property: { Id: string; }) => property.Id ===id)))
-        .subscribe(data =>
-        {
-          this.properties=data;
-          this.newProperty = JSON.parse(localStorage.getItem('newprop') || '[]');
-          for(const i in this.newProperty)
-              if(this.newProperty[i].sellrent==1)
-              this.properties.push(this.newProperty[i])
-            console.log('new Property  '+this.newProperty);
 
-        },error => {
-          console.log(error);
-        })
-
-  } */
   loadProperties(id:number) {
-    /* return this.propertyService.getProperties().subscribe((data: {}) => {
-      this.properties1 = data;
-    }) */
-    return this.propertylistService.getProperty().subscribe(data => this.property = data[id-1])
+      return this.propertylistService.getPropertyDetail(id).subscribe(data => this.property = data)
   }
 }
