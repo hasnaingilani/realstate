@@ -14,6 +14,7 @@ export class PropertyListComponent implements OnInit {
   properties: CProperty[] = [];
   constructor(private propertyService:PropertylistService) { }
   properties1:any=[];
+  today = new Date();
 
   ngOnInit() {
     this.loadProperties();

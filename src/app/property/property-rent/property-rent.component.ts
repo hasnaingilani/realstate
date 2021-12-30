@@ -12,12 +12,30 @@ import { PropertylistService } from 'src/app/shared/services/propertylist.servic
 })
 export class PropertyRentComponent implements OnInit {
   properties: CProperty[] = [];
+  city = '';
+  searchCity = '';
+  SortbyParam = '';
+  SortDirection = 'asc';
+
   constructor(private propertyService1: PropertylistService) { }
   ngOnInit(): void {
     this.loadProperties();
   }
   loadProperties() {
    return this.propertyService1.getProperties(2).subscribe(data => this.properties = data)
+  }
+  filterCity(){
+    this.searchCity = this.city;
+  }
+  clearSearch(){
+    this.searchCity = '';
+  }
+  onSortDirection(){
+    if (this.SortDirection === 'desc') {
+      this.SortDirection = 'asc';
+    } else {
+      this.SortDirection = 'desc';
+    }
   }
 
 }

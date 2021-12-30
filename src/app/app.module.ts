@@ -26,6 +26,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { TabsModule} from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { PropertydetailResolver } from './propertydetail.resolver';
+import { FilterpropertiesPipe } from './shared/pipes/filterproperties.pipe';
+import { SortpropertiesPipe } from './shared/pipes/sortproperties.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { PropertydetailResolver } from './propertydetail.resolver';
     PropertyDetailComponent,
     PropertyRentComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    FilterpropertiesPipe,
+    SortpropertiesPipe
   ],
   imports: [
     BrowserModule,

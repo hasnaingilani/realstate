@@ -12,6 +12,7 @@ export class PropertylistService {
   properties: CProperty[] = [];
   property = new CProperty();
   newProp:CProperty[]=[];
+  newProperty:CProperty[]= [];
   constructor(private http:HttpClient) {}
 
 /* get All Properties from JSON file */
@@ -26,6 +27,11 @@ export class PropertylistService {
     return this.http.get<CProperty[]>('assets/propertyList.json')
       .pipe(
          map(data => {
+          this.newProperty = JSON.parse(localStorage.getItem('newprop') || '[]');
+          for(const i in this.newProperty)
+          if(this.newProperty[i].sellrent==sellrent)
+          this.properties.push(this.newProperty[i])
+
           for(const i in data)
             if(data[i].sellrent === sellrent)
              this.properties.push(data[i])
